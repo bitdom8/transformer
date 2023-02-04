@@ -463,6 +463,12 @@ class Tokenizer:
             self.__add_to_dict(str(i))
         for i in range(26):
             self.__add_to_dict(chr(ord('a') + i))
+            # capital letters
+            self.__add_to_dict(chr(ord('A') + i))
+            # Add Turkish alphabet letters
+        turkish_alphabet = ['ç', 'Ç', 'ş', 'Ş', 'ı', 'İ', 'ö', 'Ö', 'ü', 'Ü', 'ğ', 'Ğ']
+        for letter in turkish_alphabet:
+            self.__add_to_dict(letter)
 
         # Add space and punctuation to the dictionary
         self.__add_to_dict('.')
@@ -472,6 +478,8 @@ class Tokenizer:
         if character not in self.dictionary:
             self.dictionary[character] = len(self.dictionary)
             self.reverse_dictionary[self.dictionary[character]] = character
+            
+
 
     def tokenize(self, text):
         return [self.dictionary[c] for c in text]
